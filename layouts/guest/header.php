@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/bootstrap5/css/bootstrap.min.css">
+    <!-- custom-css -->
+    <link rel="stylesheet" href="assets/custom-css/style.css">
+    <title>AppMas</title>
+</head>
+<body>
+    <header class="bg-light">
+        <nav class="navbar navbar-light bg-light py-3">
+            <div class="container">
+                <a class="navbar-brand">AppMas</a>
+                <div class="d-flex">
+                    <?php if(isset($_GET['login'])): ?>
+                        <a href="?login">
+                            <button class="btn btn-primary px-3">Masuk</button>
+                        </a>
+                        <a href="?register">
+                            <button class="btn btn-outline-primary ms-3 px-3">Daftar</button>
+                        </a>
+                    <?php elseif(isset($_GET['register'])): ?>
+                        <a href="?login">
+                            <button class="btn btn-outline-primary px-3">Masuk</button>
+                        </a>
+                        <a href="?register">
+                            <button class="btn btn-primary ms-3 px-3">Daftar</button>
+                        </a>
+                    <?php else: ?>
+                        <a href="?login">
+                            <button class="btn btn-outline-primary px-3">Masuk</button>
+                        </a>
+                        <a href="?register">
+                            <button class="btn btn-outline-primary ms-3 px-3">Daftar</button>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    

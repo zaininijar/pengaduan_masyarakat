@@ -1,0 +1,7 @@
+.min-h-screen {
+    min-height: calc(100vh - 80px);
+}
+
+.min-w-screen {
+    min-width: 100vw;
+}
