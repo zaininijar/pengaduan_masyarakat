@@ -5,3 +5,7 @@
 .min-w-screen {
     min-width: 100vw;
 }
+
+.bg-primary {
+    color: rgb(221, 44, 183) !important;
+}

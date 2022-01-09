@@ -13,27 +13,29 @@
     <header class="bg-light">
         <nav class="navbar navbar-light bg-light py-3">
             <div class="container">
-                <a class="navbar-brand">AppMas</a>
+                <a href="<?= $base_url; ?>" class="navbar-brand">AppMas</a>
                 <div class="d-flex">
-                    <?php if(isset($_GET['login'])): ?>
-                        <a href="?login">
-                            <button class="btn btn-primary px-3">Masuk</button>
-                        </a>
-                        <a href="?register">
-                            <button class="btn btn-outline-primary ms-3 px-3">Daftar</button>
-                        </a>
-                    <?php elseif(isset($_GET['register'])): ?>
-                        <a href="?login">
-                            <button class="btn btn-outline-primary px-3">Masuk</button>
-                        </a>
-                        <a href="?register">
-                            <button class="btn btn-primary ms-3 px-3">Daftar</button>
-                        </a>
+                    <?php if(isset($url)): ?>
+                        <?php if($url[0] == 'login'): ?>
+                            <a href="login">
+                                <button class="btn btn-primary px-3">Masuk</button>
+                            </a>
+                            <a href="register">
+                                <button class="btn btn-outline-primary ms-3 px-3">Daftar</button>
+                            </a>
+                        <?php elseif($url[0] == 'register'): ?>
+                            <a href="login">
+                                <button class="btn btn-outline-primary px-3">Masuk</button>
+                            </a>
+                            <a href="register">
+                                <button class="btn btn-primary ms-3 px-3">Daftar</button>
+                            </a>
+                        <?php endif; ?> 
                     <?php else: ?>
-                        <a href="?login">
+                        <a href="login">
                             <button class="btn btn-outline-primary px-3">Masuk</button>
                         </a>
-                        <a href="?register">
+                        <a href="register">
                             <button class="btn btn-outline-primary ms-3 px-3">Daftar</button>
                         </a>
                     <?php endif; ?>

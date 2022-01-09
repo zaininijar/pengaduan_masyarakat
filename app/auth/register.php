@@ -1,6 +1,7 @@
 <?php 
 
     if (isset($_POST['submit'])) {
+
         $errors = is_valid([
             'nama_lengkap' => $_POST['nama_lengkap'],
             'nik' => $_POST['nik'],
@@ -8,52 +9,24 @@
             'password' => $_POST['password'],
         ]);
 
-        if (count($errors) > 0) {
-            //
-        }else {
+        if (count($errors) < 1) {
 
-            $nama_lengkap = filter_input(INPUT_POST, 'nama_lengkap', FILTER_SANITIZE_STRING);
-            $nik = filter_input(INPUT_POST, 'nik', FILTER_SANITIZE_STRING);
-            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-            if ($email) {
+            if (filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
                 
-                $sql = "INSERT INTO users (nama_lengkap, nik, email, password) 
-                VALUES(
-                        ' . $nama_lengkap . ', 
-                        ' . $nik . ', 
-                        ' . $email . ', 
-                        ' . $password . '
-                    )";
-
-                // var_dump($sql);
-
-                if($conn->query($sql)){
-                    $messageSuccess = "Berhasil Mendaftar";
-                }else {
-                    var_dump(mysqli_error($conn));
-                };
+                $messageSuccess = register([
+                    'nama_lengkap' => filter_input(INPUT_POST, 'nama_lengkap', FILTER_SANITIZE_STRING),
+                    'nik' => filter_input(INPUT_POST, 'nik', FILTER_SANITIZE_STRING),
+                    'email' => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
+                    'password' => password_hash($_POST["password"], PASSWORD_DEFAULT),
+                ]);
 
             }else {
-                $emailError = "email tidak benar";
+                $emailError = "format email tidak benar";
             }
 
-
         }
+
     };
-
-    function is_valid($data){
-        $errors = [];
-        foreach($data as $key => $dt){
-            if ($data[$key] == null || $data[$key] == "") {
-                $errors[] = $key . ' tidak boleh kosong';
-            }else {
-                continue;
-            }
-        }
-        return $errors;
-    }
 
 ?>
 
@@ -76,7 +49,7 @@
 
             <?php if(isset($messageSuccess)): ?>
                 <div class="alert alert-success" role="alert">
-                    <?= $messageSuccess; ?> <a href="?login" class="alert-link">Login Sekarang</a>
+                    <?= $messageSuccess; ?> <a href="login" class="alert-link">Login Sekarang</a>
                 </div>
             <?php endif; ?>
             
