@@ -3,6 +3,21 @@
 
     global $auth; 
 
+    $link_active_dashboard = '';
+    $link_active_pengaduan = '';
+    $link_active_users = '';
+    $link_active_settings = '';
+
+    if ($url[0] == 'admin' && $url[1] == 'index') {
+        $link_active_dashboard = 'active';
+    }elseif($url[0] == 'admin' && $url[1] == 'pengaduan'){
+        $link_active_pengaduan = 'active';
+    }elseif($url[0] == 'admin' && $url[1] == 'users'){
+        $link_active_users = 'active';
+    }elseif($url[0] == 'admin' && $url[1] == 'settings'){
+        $link_active_settings = 'active';
+    }
+
 ?>
 
 
@@ -65,25 +80,25 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light min-h-screen shadow" style="width: 250px;">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="<?= $base_url . 'admin/index' ?>" class="nav-link active link-dark text-middle">
+                    <a href="<?= $base_url . 'admin/index' ?>" class="<?= $link_active_dashboard ?> nav-link hoverable link-dark text-middle">
                         <span class="mdi mdi-view-dashboard-outline align-middle"></span>
                         <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url . 'admin/pengaduan' ?>" class="nav-link hoverable link-dark">
+                    <a href="<?= $base_url . 'admin/pengaduan' ?>" class="<?= $link_active_pengaduan ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-message-bulleted align-middle"></span>
                         <span class="align-middle">Pengaduan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url . 'admin/users' ?>" class="nav-link hoverable link-dark">
+                    <a href="<?= $base_url . 'admin/users' ?>" class="<?= $link_active_users ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-account-group-outline align-middle"></span>
                         <span class="align-middle">Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url . 'admin/settings' ?>" class="nav-link hoverable link-dark">
+                    <a href="<?= $base_url . 'admin/settings' ?>" class="<?= $link_active_settings ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-cog-outline align-middle"></span>
                         <span class="align-middle">Settings</span>
                     </a>

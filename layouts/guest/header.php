@@ -11,7 +11,7 @@
 </head>
 <body>
     <header class="bg-light">
-        <nav class="navbar navbar-light bg-light py-3">
+        <nav class="navbar navbar-light bg-light py-3 shadow">
             <div class="container">
                 <a href="<?= $base_url; ?>" class="navbar-brand" style="background-image: url(<?= $base_url . 'assets/appmas-logo/cover.png' ?>);"></a>
                 <div class="d-flex">
