@@ -13,7 +13,7 @@
     <header class="bg-light">
         <nav class="navbar navbar-light bg-light py-3">
             <div class="container">
-                <a href="<?= $base_url; ?>" class="navbar-brand">AppMas</a>
+                <a href="<?= $base_url; ?>" class="navbar-brand" style="background-image: url(<?= $base_url . 'assets/appmas-logo/cover.png' ?>);"></a>
                 <div class="d-flex">
                     <?php if(isset($url)): ?>
                         <?php if($url[0] == 'login'): ?>

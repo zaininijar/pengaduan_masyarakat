@@ -7,5 +7,17 @@
 }
 
 .bg-primary {
-    color: rgb(221, 44, 183) !important;
+    color: #cd0dfd;
+}
+
+.nav-link.hoverable:hover {
+    background-color: #cd0dfd !important;
+    color: white;
+}
+
+.navbar-brand {
+    height: 60px;
+    width: 180px;
+    background-position: center;
+    background-size: cover;
 }
