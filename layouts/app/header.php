@@ -40,7 +40,7 @@
             <div class="container-fluid">
                 <a href="<?= $base_url; ?>" class="navbar-brand"
                     style="background-image: url(<?= $base_url . 'assets/appmas-logo/cover.png' ?>);"></a>
-                <div class="d-flex">
+                <div class="d-flex" style="margin-right: 20px !important;">
                     <?php if(isset($url)): ?>
                     <?php if($url[0] == 'admin'): ?>
                     <div class="dropdown">
@@ -84,35 +84,41 @@
         </nav>
     </header>
     <aside>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light min-h-screen shadow" style="width: 250px;">
+        <div class="aside-content active d-flex flex-column flex-shrink-0 p-3 bg-light min-h-screen shadow">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a href="<?= $base_url . 'admin/index' ?>"
                         class="<?= $link_active_dashboard ?> nav-link hoverable link-dark text-middle">
                         <span class="mdi mdi-view-dashboard-outline align-middle"></span>
-                        <span class="align-middle">Dashboard</span>
+                        <span class="menu-aside align-middle">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= $base_url . 'admin/pengaduan' ?>"
                         class="<?= $link_active_pengaduan ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-message-bulleted align-middle"></span>
-                        <span class="align-middle">Pengaduan</span>
+                        <span class="menu-aside align-middle">Pengaduan</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= $base_url . 'admin/users' ?>"
                         class="<?= $link_active_users ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-account-group-outline align-middle"></span>
-                        <span class="align-middle">Users</span>
+                        <span class="menu-aside align-middle">Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= $base_url . 'admin/settings' ?>"
                         class="<?= $link_active_settings ?> nav-link hoverable link-dark">
                         <span class="mdi mdi-cog-outline align-middle"></span>
-                        <span class="align-middle">Settings</span>
+                        <span class="menu-aside align-middle">Settings</span>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <span id="toggle-aside"
+                        class="active open mdi fs-4 ms-3 mdi-menu align-middle cursor-pointer"></span>
+                    <span id="toggle-aside"
+                        class="mdi close fs-4 ms-3 mdi-window-close align-middle cursor-pointer"></span>
                 </li>
             </ul>
         </div>
