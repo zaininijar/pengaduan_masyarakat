@@ -3,7 +3,7 @@
     require_once 'connection.php'; 
     require_once 'function.php'; 
     
-    $base_url = 'http://localhost/php_native/pengaduan_masyarakat/';
+    $base_url = 'http://localhost/zaini_nijar/pengaduan_masyarakat/';
 
     if (isset($_GET['url'])) {
         $url = rtrim($_GET['url'], '/');
