@@ -1,4 +1,3 @@
-
 <?php 
 
     if (isset($_POST['submit'])) {
@@ -32,19 +31,20 @@
                 Form Login
             </div>
             <?php if(isset($errors)): ?>
-                <?php if(count($errors) > 0): ?>
-                    <div class="alert alert-danger text-capitalize" role="alert">
-                        <?php foreach($errors as $key => $error): ?>
-                            <li><?= $errors[$key]; ?></li>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+            <?php if(count($errors) > 0): ?>
+            <div class="alert alert-danger text-capitalize" role="alert">
+                <?php foreach($errors as $key => $error): ?>
+                <li><?= $errors[$key]; ?></li>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
             <?php endif; ?>
             <div class="card-body px-5">
                 <form action="" method="POST" id="login">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Alamat Email</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>

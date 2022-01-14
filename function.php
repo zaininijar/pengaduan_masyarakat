@@ -37,8 +37,6 @@
         return $errors;
     }
 
-
-
     function login($data)
     {
         global $conn;
