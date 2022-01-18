@@ -54,6 +54,10 @@ aside .aside-content.active {
   width: 80px;
 }
 
+aside {
+  width: 80px;
+}
+
 aside .aside-content.active .nav span.menu-aside {
   display: none;
   font-size: 10px;

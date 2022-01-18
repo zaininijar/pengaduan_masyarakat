@@ -48,10 +48,16 @@
         if (mysqli_num_rows($result)) {
 
             $row = mysqli_fetch_assoc($result);
-            if (password_verify($password, $row['password'])) {
+            if (password_verify($password, $row['password']) && $row['role_id'] == 1 || $row['role_id'] == 2) {
                 if (set_user_session($row['id'])) {
                     echo "<script> alert('loged'); </script>";
                     header("Location: admin/index");
+                    $_SESSION['auth'] = $row;
+                }
+            }elseif(password_verify($password, $row['password']) && $row['role_id'] == 3){
+                if (set_user_session($row['id'])) {
+                    echo "<script> alert('loged'); </script>";
+                    header("Location: masyarakat/index");
                     $_SESSION['auth'] = $row;
                 }
             }else{
@@ -92,4 +98,30 @@
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
+    }
+
+    function mengadu($data)
+    {
+        global $conn;
+        $id = rand(0000, 9999);
+        $user_id = $_SESSION['auth']['id'];
+        $judul_aduan = $data['judul_aduan'];
+        $isi_aduan = $data['isi_aduan'];
+        $foto = $data['foto'];
+        
+        $sql = "INSERT INTO pengaduan (id, user_id, judul_aduan, isi_aduan, foto) 
+        VALUES(
+                '" . $id . "', 
+                '" . $user_id . "', 
+                '" . $judul_aduan . "', 
+                '" . $isi_aduan . "',
+                '" . $foto . "'
+            )";
+
+        if($conn->query($sql)){
+            return "Berhasil Mengadu";
+        }else {
+            var_dump(mysqli_error($conn));
+        };
+
     }

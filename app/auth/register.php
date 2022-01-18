@@ -36,23 +36,23 @@
             <div class="card-header text-center">
                 Form Pendaftaran
             </div>
-            
+
             <?php if(isset($errors)): ?>
-                <?php if(count($errors) > 0): ?>
-                    <div class="alert alert-danger text-capitalize" role="alert">
-                        <?php foreach($errors as $key => $error): ?>
-                            <li><?= $errors[$key]; ?></li>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+            <?php if(count($errors) > 0): ?>
+            <div class="alert alert-danger text-capitalize" role="alert">
+                <?php foreach($errors as $key => $error): ?>
+                <li><?= $errors[$key]; ?></li>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
             <?php endif; ?>
 
             <?php if(isset($messageSuccess)): ?>
-                <div class="alert alert-success" role="alert">
-                    <?= $messageSuccess; ?> <a href="login" class="alert-link">Login Sekarang</a>
-                </div>
+            <div class="alert alert-success" role="alert">
+                <?= $messageSuccess; ?> <a href="login" class="alert-link">Login Sekarang</a>
+            </div>
             <?php endif; ?>
-            
+
             <div class="card-body px-5">
                 <form action="" method="POST">
                     <div class="mb-3">
@@ -65,11 +65,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Alamat Email</label>
-                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
                         <?php if(isset($emailError)): ?>
-                            <p class="text-danger text-capitalize">
-                                <?= $emailError; ?>!!
-                            </p>
+                        <p class="text-danger text-capitalize">
+                            <?= $emailError; ?>!!
+                        </p>
                         <?php endif; ?>
                     </div>
                     <div class="mb-3">

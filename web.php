@@ -140,6 +140,26 @@
             }else {
                 header('Location: ' . $base_url);
             }
+        }elseif($url[0] == 'masyarakat' && $url[1] == 'mengadu'){
+            if (isset($_SESSION['auth'])) {
+
+                $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
+                if ($result) {
+                    $id = mysqli_fetch_assoc($result)['user_id'];
+                    if ($_SESSION['auth']['id'] == $id) {
+                        require_once "layouts/app/header.php";
+                        require_once "app/page/masyarakat/mengadu.php";
+                        require_once "layouts/app/footer.php";
+                    }else {
+                        header('Location: ' . $base_url);
+                    }
+                }else {
+                    header('Location: ' . $base_url . 'error_page');
+                }
+
+            }else {
+                header('Location: ' . $base_url);
+            }
         }elseif($url[0] == 'error_page'){
             require_once "app/page/error_page.php";
         }elseif($url[0] == 'logout'){
