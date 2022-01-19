@@ -1,7 +1,7 @@
     </main>
-    <footer>
+    <footer class="bg-dark text-white">
         <div class="row p-2 mt-5 pt-4 d-flex"
-            style="background-color: #000; margin-left: -50px !important; margin-right: -45px !important;">
+            style="background-color: #000; margin-left: -50px !important; margin-right: 0 !important;">
             <ul class="d-flex col-md-6 justify-content-center">
                 <li class="me-3" style="list-style: none;">
                     <a href="#" class="text-white">About</a>
