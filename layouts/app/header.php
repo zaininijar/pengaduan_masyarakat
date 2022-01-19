@@ -39,8 +39,8 @@
 </head>
 
 <body>
-    <header style="background-color: #fff; height: 70px;">
-        <nav class="navbar py-2 shadow fixed-top">
+    <header style="background-color: #fff !important; height: 70px;">
+        <nav class="navbar py-2 shadow fixed-top" style="background-color: #fff !important;">
             <div class="container-fluid">
                 <a href="<?= $base_url; ?>" class="navbar-brand"
                     style="background-image: url(<?= $base_url . 'assets/appmas-logo/cover.png' ?>);"></a>
