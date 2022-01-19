@@ -64,6 +64,10 @@ aside .aside-content.active .nav span.menu-aside {
   white-space: nowrap;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 @keyframes text {
   from {
     opacity: 0;

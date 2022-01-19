@@ -39,8 +39,8 @@
 </head>
 
 <body>
-    <header style="background-color: #fff;">
-        <nav class="navbar py-2 shadow">
+    <header style="background-color: #fff; height: 70px;">
+        <nav class="navbar py-2 shadow fixed-top">
             <div class="container-fluid">
                 <a href="<?= $base_url; ?>" class="navbar-brand"
                     style="background-image: url(<?= $base_url . 'assets/appmas-logo/cover.png' ?>);"></a>
@@ -103,9 +103,9 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="min-h-screen">
         <aside style="position: fixed; z-index: 99;">
-            <div class="aside-content active d-flex flex-column flex-shrink-0 p-3 bg-light min-h-screen shadow">
+            <div class="aside-content active d-flex flex-column min-h-screen flex-shrink-0 p-3 bg-light shadow">
                 <?php if($_SESSION['auth']['role_id'] == 1 || $_SESSION['auth']['role_id'] == 2): ?>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
