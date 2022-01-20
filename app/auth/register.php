@@ -2,6 +2,8 @@
 
     if (isset($_POST['submit'])) {
 
+        var_dump($_POST);
+
         $errors = is_valid([
             'nama_lengkap' => $_POST['nama_lengkap'],
             'nik' => $_POST['nik'],
