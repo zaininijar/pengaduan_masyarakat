@@ -46,14 +46,13 @@
                 </h3>
             </div>
             <div class="card-body p-5">
-                <!-- <h5 class="card-title">Special title treatment</h5> -->
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Act</th>
-                            <th scope="col">Judul</th>
-                            <th scope="col">Isi</th>
+                            <th scope="col">Judul Aduan/th>
+                            <th scope="col">Isi Aduan</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Status</th>
                             <th scope="col">Dibuat</th>
