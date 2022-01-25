@@ -66,7 +66,7 @@
 
 ?>
 
-<div class="container pt-5">
+<div class="container pt-5" style="margin-left: 90px;">
     <div class="row">
         <div class="col">
             <div class="card">

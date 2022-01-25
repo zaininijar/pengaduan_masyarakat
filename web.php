@@ -28,7 +28,7 @@
                 $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
                 if ($result) {
                     $id = mysqli_fetch_assoc($result)['user_id'];
-                    if ($_SESSION['auth']['id'] == $id) {
+                    if ($_SESSION['auth']['id'] == $id && $_SESSION['auth']['role_id'] == 1) {
                         require_once "layouts/app/header.php";
                         require_once "app/page/admin/index.php";
                         require_once "layouts/app/footer.php";
@@ -43,11 +43,10 @@
             }
         }elseif($url[0] == 'admin' && $url[1] == 'pengaduan'){
             if (isset($_SESSION['auth'])) {
-
                 $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
                 if ($result) {
                     $id = mysqli_fetch_assoc($result)['user_id'];
-                    if ($_SESSION['auth']['id'] == $id) {
+                    if ($_SESSION['auth']['id'] == $id && $_SESSION['auth']['role_id'] == 1) {
                         require_once "layouts/app/header.php";
                         require_once "app/page/admin/pengaduan.php";
                         require_once "layouts/app/footer.php";
@@ -62,7 +61,7 @@
                 header('Location: ' . $base_url);
             }
         }elseif($url[0] == 'admin' && $url[1] == 'users'){
-            if (isset($_SESSION['auth'])) {
+            if (isset($_SESSION['auth']) && $_SESSION['auth']['role_id'] == 1) {
                 $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
                 if ($result) {
                     $id = mysqli_fetch_assoc($result)['user_id'];
@@ -80,26 +79,6 @@
                 header('Location: ' . $base_url);
             }
 
-        }elseif($url[0] == 'admin' && $url[1] == 'users'){
-            if (isset($_SESSION['auth'])) {
-
-                $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
-                if ($result) {
-                    $id = mysqli_fetch_assoc($result)['user_id'];
-                    if ($_SESSION['auth']['id'] == $id) {
-                        require_once "layouts/app/header.php";
-                        require_once "app/page/admin/users.php";
-                        require_once "layouts/app/footer.php";
-                    }else {
-                        header('Location: ' . $base_url);
-                    }
-                }else {
-                    header('Location: ' . $base_url . 'error_page');
-                }
-
-            }else {
-                header('Location: ' . $base_url);
-            }
         }elseif($url[0] == 'admin' && $url[1] == 'settings'){
             if (isset($_SESSION['auth'])) {
 

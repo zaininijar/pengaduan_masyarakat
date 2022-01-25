@@ -68,6 +68,42 @@ aside .aside-content.active .nav span.menu-aside {
   cursor: pointer;
 }
 
+.bg-gradient-primary {
+  background-image: linear-gradient(
+    to bottom right,
+    #d52dff,
+    #e49ff5
+  ) !important;
+  border: 0px !important;
+}
+
+.bg-gradient-info {
+  background-image: linear-gradient(
+    to bottom right,
+    #2dabff,
+    #9fddf5
+  ) !important;
+  border: 0px !important;
+}
+
+.bg-gradient-success {
+  background-image: linear-gradient(
+    to bottom right,
+    #27c596,
+    #9ff5ea
+  ) !important;
+  border: 0px !important;
+}
+
+.bg-gradient-warning {
+  background-image: linear-gradient(
+    to bottom right,
+    #c9b92e,
+    #f5e19f
+  ) !important;
+  border: 0px !important;
+}
+
 @keyframes text {
   from {
     opacity: 0;

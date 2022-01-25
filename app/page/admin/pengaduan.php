@@ -34,7 +34,7 @@
     }
 
 ?>
-<div class="container pt-5">
+<div class="container pt-5" style="margin-left: 90px;">
     <div class="row">
         <?php if(isset($success)): ?>
         <div class="alert alert-success"><?= $success ?></div>
@@ -52,6 +52,7 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Act</th>
+                            <th scope="col">Pengadu</th>
                             <th scope="col">Judul</th>
                             <th scope="col">Isi</th>
                             <th scope="col">Foto</th>
@@ -62,7 +63,7 @@
                     <tbody>
                         <?php 
                             global $conn;
-                            $sql = "SELECT * FROM pengaduan";
+                            $sql = "SELECT pengaduan.*, users.nama_lengkap FROM pengaduan INNER JOIN users ON pengaduan.user_id = users.id";
                             $result = mysqli_query($conn, $sql);
                         ?>
                         <?php if ($result->num_rows > 0): ?>
@@ -119,6 +120,7 @@
                                     </div>
                                 </details>
                             </th>
+                            <td><?= $row['nama_lengkap'] ?></td>
                             <td><?= $row['judul_aduan'] ?></td>
                             <td><?= $row['isi_aduan'] ?></td>
                             <td>

@@ -5,7 +5,7 @@
     $result = mysqli_query($conn, $sql);
 
 ?>
-<div class="container pt-5">
+<div class="container pt-5" style="margin-left: 90px;">
     <div class="row">
         <div class="card p-0">
             <div class="card-header">

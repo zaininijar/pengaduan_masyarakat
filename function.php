@@ -25,6 +25,30 @@
 
     }
 
+    function user_update($data)
+    {
+        global $conn;
+
+        $id = $data['id'];
+        $nama_lengkap = $data['nama_lengkap'];
+        $nik = $data['nik'];
+        $email = $data['email'];
+        if (isset($data['new_password'])) {
+            $password = $data['new_password'];
+            $sql = "UPDATE users SET nama_lengkap = '" . $nama_lengkap . "', nik = '" . $nik . "', email = '" . $email . "', password = '" . $password . "' WHERE id = " . $id;
+        }else {
+            $sql = "UPDATE users SET nama_lengkap = '" . $nama_lengkap . "', nik = '" . $nik . "', email = '" . $email . "' WHERE id = " . $id;
+        }
+        
+        $result = mysqli_query($conn, $sql);
+        if($result){
+            return "Data Berhasil Di Update";
+        }else {
+            var_dump(mysqli_error($conn));
+        };
+
+    }
+
     function is_valid($data){
         $errors = [];
         foreach($data as $key => $dt){

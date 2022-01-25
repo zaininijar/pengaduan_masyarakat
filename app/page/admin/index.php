@@ -33,10 +33,10 @@
 
 ?>
 
-<div class="container">
+<div class="container" style="margin-left: 90px;">
     <div class="row pt-5">
         <div class="col-md-4">
-            <div class="card bg-primary text-white shadow" style="height: 225px;">
+            <div class="card bg-gradient-primary text-white shadow" style="height: 225px;">
                 <div class="card-body">
                     <h5 class="card-title">Jumlah Semua User</h5>
                     <h1 class="mt-3 card-subtitle mb-2">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-info text-white shadow" style="height: 225px;">
+            <div class="card bg-gradient-info text-white shadow" style="height: 225px;">
                 <div class="card-body">
                     <h5 class="card-title">Jumlah Semua Aduan</h5>
                     <h1 class="mt-3 card-subtitle mb-2">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-success text-white shadow" style="height: 100px;">
+            <div class="card bg-gradient-success text-white shadow" style="height: 100px;">
                 <div class="card-body">
                     <h5 class="card-title">Jumlah aduan selesai</h5>
                     <h3 class="card-subtitle mb-2">
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <br>
-            <div class="card bg-warning text-white shadow" style="height: 100px;">
+            <div class="card bg-gradient-warning text-white shadow" style="height: 100px;">
                 <div class="card-body">
                     <h5 class="card-title">Jumlah aduan proses</h5>
                     <h3 class="card-subtitle mb-2">
