@@ -40,10 +40,12 @@
         <div class="alert alert-success"><?= $success ?></div>
         <?php endif; ?>
         <div class="card p-0">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                 <h3 class="text-center">
                     Semua Aduan
                 </h3>
+                <a target="_blank" href="<?= $base_url . 'admin/pengaduan_print' ?>"
+                    class="btn bg-gradient-primary text-white px-4">Print</a>
             </div>
             <div class="card-body p-5">
                 <!-- <h5 class="card-title">Special title treatment</h5> -->

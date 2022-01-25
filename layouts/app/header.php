@@ -21,6 +21,39 @@
         $link_active_mengadu_masyarakat = 'active';
     }
 
+    if (isset($_POST['profileUpdate'])) {
+       
+        $errors = is_valid([
+            'id' => $_SESSION['auth']['id'],
+            'nama_lengkap' => $_POST['nama_lengkap'],
+            'nik' => $_POST['nik'],
+            'email' => $_POST['email'],
+        ]);
+
+        if (count($errors) < 1) {
+
+            if (filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
+                
+                $messageSuccess = user_update([
+                    'id' => $_SESSION['auth']['id'],
+                    'nama_lengkap' => filter_input(INPUT_POST, 'nama_lengkap', FILTER_SANITIZE_STRING),
+                    'nik' => filter_input(INPUT_POST, 'nik', FILTER_SANITIZE_STRING),
+                    'email' => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
+                    'new_password' => password_hash($_POST["new_password"], PASSWORD_DEFAULT),
+                ]);
+
+                // if ($messageSuccess) {
+                //     $result = mysqli_query($conn, "SELECT users.*, roles.role_name FROM users JOIN roles ON users.role_id = roles.id WHERE id = $_SESSION['auth']['id']")
+                //     $row = mysqli_fetch_assoc($result);                    
+                // }
+            }else {
+                $emailError = "format email tidak benar";
+            }
+
+        }
+
+    }
+
 ?>
 
 
@@ -57,9 +90,8 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
                             <li>
-                                <a style="text-decoration: none;" href="<?= $base_url . 'profile' ?>">
-                                    <button class="dropdown-item" type="button">Profile</button>
-                                </a>
+                                <button class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#profileUpdate">Profile</button>
                             </li>
                             <li>
                                 <a style="text-decoration: none;" href="<?= $base_url . 'logout' ?>">
@@ -79,9 +111,8 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
                             <li>
-                                <a style="text-decoration: none;" href="<?= $base_url . 'profile' ?>">
-                                    <button class="dropdown-item" type="button">Profile</button>
-                                </a>
+                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileUpdate"
+                                    type="button">Profile</button>
                             </li>
                             <li>
                                 <a style="text-decoration: none;" href="<?= $base_url . 'logout' ?>">
@@ -169,3 +200,54 @@
                 <?php endif; ?>
             </div>
         </aside>
+
+        <!-- Modal -->
+        <div class="modal fade" id="profileUpdate" tabindex="-1" aria-labelledby="profileUpdateLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileUpdateLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            <div class="modal-body">
+                                <input type="hidden" name="id" value="<?= $_SESSION['auth']['id'] ?>">
+                                <div class="mb-3">
+                                    <label for="nama_lengkap">Nama Lengkap</label>
+                                    <input class="form-control" type="text" name="nama_lengkap" id="nama_lengkap"
+                                        value="<?= $_SESSION['auth']['nama_lengkap'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nik">NIK</label>
+                                    <input class="form-control" type="text" name="nik" id="nik"
+                                        value="<?= $_SESSION['auth']['nik'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input class="form-control" type="text" name="email" id="email"
+                                        value="<?= $_SESSION['auth']['email'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Password</label>
+                                    <input class="form-control" type="password" id="password"
+                                        value="<?= $_SESSION['auth']['password'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new_password">New Password</label>
+                                    <input class="form-control" type="password" name="new_password" id="new_password">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="profileUpdate">
+                                    <span>Simpan</span>
+                                    <span class="mdi mdi-send"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

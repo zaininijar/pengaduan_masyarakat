@@ -67,7 +67,7 @@
         $errors = [];
         $email = $data['email'];
         $password = $data['password'];
-        $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+        $result = mysqli_query($conn, "SELECT users.*, roles.role_name FROM users JOIN roles ON users.role_id = roles.id WHERE email = '$email'");
 
         if (mysqli_num_rows($result)) {
 

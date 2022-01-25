@@ -60,6 +60,23 @@
             }else {
                 header('Location: ' . $base_url);
             }
+        }elseif($url[0] == 'admin' && $url[1] == 'pengaduan_print'){
+            if (isset($_SESSION['auth'])) {
+                $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
+                if ($result) {
+                    $id = mysqli_fetch_assoc($result)['user_id'];
+                    if ($_SESSION['auth']['id'] == $id && $_SESSION['auth']['role_id'] == 1) {
+                        require_once "app/page/admin/pengaduan_print.php";
+                    }else {
+                        header('Location: ' . $base_url);
+                    }
+                }else {
+                    header('Location: ' . $base_url . 'error_page');
+                }
+    
+            }else {
+                header('Location: ' . $base_url);
+            }
         }elseif($url[0] == 'admin' && $url[1] == 'users'){
             if (isset($_SESSION['auth']) && $_SESSION['auth']['role_id'] == 1) {
                 $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
