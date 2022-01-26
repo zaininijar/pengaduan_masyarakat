@@ -35,6 +35,7 @@
     <!-- custom-css -->
     <link rel="stylesheet" href="<?= $base_url . '/assets/custom-css/style.css'; ?> ">
     <link rel="stylesheet" href="<?= $base_url . '/assets/icon/css/materialdesignicons.min.css'; ?> ">
+    <script src="<?= $base_url . 'assets/js/jquery-3.6.0.min.js' ?>"></script>
     <title>AppMas</title>
 </head>
 

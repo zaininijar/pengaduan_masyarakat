@@ -51,41 +51,60 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Act</th>
-                            <th scope="col">Judul Aduan/th>
+                            <th scope="col">Judul Aduan</th>
                             <th scope="col">Isi Aduan</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Status</th>
                             <th scope="col">Dibuat</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php 
-                            global $conn;
-                            $sql = "SELECT * FROM pengaduan";
-                            $result = mysqli_query($conn, $sql);
-                        ?>
-                        <?php if ($result->num_rows > 0): ?>
-                        <?php $no = 1; ?>
-                        <?php while($row = $result->fetch_assoc()): ?>
-                        <tr>
-                            <th><?= $no ?></th>
-                            <th>
+                    <tbody id="body-table-pengaduan">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+
+            $.ajax({
+                type: "GET",
+                data : "",
+                url: "<?= $base_url . 'admin/pengaduan-ajax' ?>",
+                success: function(data) {
+                    var pengaduan = JSON.parse(data);
+                    let no = 1;
+                    $.each(pengaduan, function(key, val) {
+                        var row = $("<tr>");
+                        
+                        var status;
+
+                        if (val.status_id == 0) {
+                            status = "<div class='badge bg-warning'>none</div>";
+                        }else if(val.status_id == 'selesai') {
+                            status = "<div class='badge bg-success'>"+ val.status_id +"</div>";
+                        }else {
+                            status = "<div class='badge bg-primary text-dark'>"+ val.status_id +"</div>";
+                        }
+
+                        row.html(`
+                            <td>`+ no +`</td>
+                            <td>
                                 <details>
                                     <summary>
                                     </summary>
                                     <form action="" method="POST">
-                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                        <input type="hidden" name="id" value="`+ val.id +`">
                                         <button name="konfirmasi" type="submit" class="btn btn-success py-0"
                                             style="padding-left: 10px; padding-right: 10px;">
                                             <span class="mdi mdi-check"></span>
                                         </button>
                                     </form>
                                     <a class="badge bg-warning fs-6 mt-1 cursor-pointer" data-bs-toggle="modal"
-                                        data-bs-target="#modalTanggapi<?= $row['id'] ?>">
+                                        data-bs-target="#modalTanggapi`+ val.id +`">
                                         <span class="mdi mdi-chat-plus-outline"></span>
                                     </a>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modalTanggapi<?= $row['id'] ?>" tabindex="-1"
+                                    <div class="modal fade" id="modalTanggapi`+ val.id +`" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -96,7 +115,7 @@
                                                 </div>
                                                 <form action="" method="POST" enctype="multipart/form-data">
                                                     <div class="modal-body">
-                                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                                        <input type="hidden" name="id" value="`+ val.id +`">
                                                         <div class="mb-3">
                                                             <label for="isi_tanggapan" class="form-label">Isi
                                                                 Tanggapan</label>
@@ -117,17 +136,16 @@
                                         </div>
                                     </div>
                                 </details>
-                            </th>
-                            <td><?= $row['judul_aduan'] ?></td>
-                            <td><?= $row['isi_aduan'] ?></td>
+                            </td>
+                            <td>`+ val.judul_aduan +`</td>
+                            <td>`+ val.isi_aduan +`</td>
                             <td>
-
-                                <img data-bs-toggle="modal" data-bs-target="#exampleModal<?= $no; ?>" width="30"
+                                <img data-bs-toggle="modal" data-bs-target="#exampleModal`+ no +`" width="30"
                                     height="30" class="rounded-circle cursor-pointer"
-                                    src="<?= $base_url . 'assets/images/aduan/' . $row['foto'] ?>" alt="">
+                                    src="<?= $base_url . 'assets/images/aduan/' ?>`+ val.foto +`" alt="">
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal<?= $no; ?>" tabindex="-1"
+                                <div class="modal fade" id="exampleModal`+ no +`" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -138,7 +156,7 @@
                                             </div>
                                             <div class="modal-body text-center">
                                                 <img width="400" class="rounded cursor-pointer"
-                                                    src="<?= $base_url . 'assets/images/aduan/' . $row['foto'] ?>"
+                                                    src="<?= $base_url . 'assets/images/aduan/' ?>`+ val.foto +`"
                                                     alt="">
                                             </div>
                                             <div class="modal-footer">
@@ -149,35 +167,18 @@
                                     </div>
                                 </div>
                             </td>
-                            <?php if($row['status_id'] == 0): ?>
-                            <td>
-                                <div class="badge bg-warning">none</div>
-                            </td>
-                            <?php elseif($row['status_id'] == 'selesai'): ?>
-                            <td>
-                                <div class="badge bg-success"><?= $row['status_id'] ?></div>
-                            </td>
-                            <?php else: ?>
-                            <td>
-                                <div class="badge bg-primary"><?= $row['status_id'] ?></div>
-                            </td>
-                            <?php endif; ?>
-                            <td><?= date($row['created_at']) ?></td>
-                        </tr>
-                        <?php $no++; ?>
-                        <?php endwhile; ?>
-                        <?php else: ?>
-                        <td colspan="6">
-                            <h6 class="text-center mt-5">Data Kosong</h6>
-                        </td>
-                        <?php endif; ?>
+                            <td>`+ status +`</td>
+                            <td>`+ val.created_at +`</td>
+                        `);
 
-                        <?php $conn->close(); ?>
+                        var tableBody = $('#body-table-pengaduan');
+                        tableBody.append(row);
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        no++;
+                    });
+                },
+            });
 
+        </script>
     </div>
 </div>

@@ -3,7 +3,7 @@
     require_once 'connection.php'; 
     require_once 'function.php'; 
     
-    $base_url = 'http://localhost/zaini_nijar/pengaduan_masyarakat/';
+    $base_url = 'http://localhost/php_native/pengaduan_masyarakat/';
 
     if (isset($_GET['url'])) {
         $url = rtrim($_GET['url'], '/');
@@ -51,6 +51,24 @@
                         require_once "layouts/app/header.php";
                         require_once "app/page/admin/pengaduan.php";
                         require_once "layouts/app/footer.php";
+                    }else {
+                        header('Location: ' . $base_url);
+                    }
+                }else {
+                    header('Location: ' . $base_url . 'error_page');
+                }
+    
+            }else {
+                header('Location: ' . $base_url);
+            }
+        }elseif($url[0] == 'admin' && $url[1] == 'pengaduan-ajax'){
+            if (isset($_SESSION['auth'])) {
+
+                $result = mysqli_query($conn, "SELECT * FROM sessions WHERE user_id = '". $_SESSION['auth']['id'] . "'");
+                if ($result) {
+                    $id = mysqli_fetch_assoc($result)['user_id'];
+                    if ($_SESSION['auth']['id'] == $id) {
+                        require_once "app/page/admin/ajax/pengaduan_ajax.php";
                     }else {
                         header('Location: ' . $base_url);
                     }

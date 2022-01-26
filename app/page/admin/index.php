@@ -1,33 +1,35 @@
-<?php 
+<?php
 
     global $conn;
     $sql = "SELECT * FROM users";
     $result = mysqli_query($conn, $sql);
 
-    if($result->num_rows > 0 ){
+    if ($result->num_rows > 0) {
         $jumlah_users = $result->num_rows;
     }
     
     $sql = "SELECT * FROM pengaduan";
     $result = mysqli_query($conn, $sql);
 
-    if($result->num_rows > 0 ){
+    if ($result->num_rows > 0) {
         $jumlah_aduan = $result->num_rows;
     }
     
     $sql = "SELECT * FROM pengaduan WHERE status_id = 3";
     $result = mysqli_query($conn, $sql);
 
-    if($result->num_rows > 0 ){
+    if ($result->num_rows > 0) {
         $jumlah_aduan_selesai = $result->num_rows;
+    } else {
+        $jumlah_aduan_selesai = 0;
     }
     
     $sql = "SELECT * FROM pengaduan WHERE status_id = 2";
     $result = mysqli_query($conn, $sql);
 
-    if($result->num_rows > 0 ){
+    if ($result->num_rows > 0) {
         $jumlah_aduan_proses = $result->num_rows;
-    }else {
+    } else {
         $jumlah_aduan_proses = 0;
     }
 
